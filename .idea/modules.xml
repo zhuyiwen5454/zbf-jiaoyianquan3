@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/code-server/code-server.iml" filepath="$PROJECT_DIR$/code-server/code-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zbf-sms-server/zbf-sms-server.iml" filepath="$PROJECT_DIR$/zbf-sms-server/zbf-sms-server.iml" />
+    </modules>
+  </component>
+</project>
