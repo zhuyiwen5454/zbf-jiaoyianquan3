@@ -4,7 +4,6 @@ import com.zbf.user.entity.BaseUser;
 import com.zbf.user.mapper.BaseUserMapper;
 import com.zbf.user.service.IBaseUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,7 +16,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class BaseUserServiceImpl extends ServiceImpl<BaseUserMapper, BaseUser> implements IBaseUserService {
-
 
     @Override
     public BaseUser getBaseUserByLoginName(String loginName) {
@@ -38,4 +36,5 @@ public class BaseUserServiceImpl extends ServiceImpl<BaseUserMapper, BaseUser> i
     public boolean upd(BaseUser baseUser) {
         return baseMapper.upd(baseUser);
     }
+
 }
