@@ -12,10 +12,12 @@ import java.util.Map;
  *  服务类
  * </p>
  *
- * @author wts
+ * @author zhuyiwen
  * @since 2020-09-16
  */
 public interface IBaseMenuService extends IService<BaseMenu> {
 
-    public List<BaseMenu> getMenuList();
+    public List<BaseMenu> getMenuList(String loginName);
+
+    public  List<BaseMenu> menuAll();
 }

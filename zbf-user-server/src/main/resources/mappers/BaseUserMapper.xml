@@ -21,5 +21,36 @@
     <sql id="Base_Column_List">
         id, version, userName, loginName, passWord, tel, buMen, salt, createTime, updateTime, email
     </sql>
+    <resultMap id="mapVo" type="com.zbf.user.entity.BaseUser">
+        <id column="id" property="id" />
+        <result column="version" property="version" />
+        <result column="userName" property="userName" />
+        <result column="loginName" property="loginName" />
+        <result column="passWord" property="passWord" />
+        <result column="tel" property="tel" />
+        <result column="buMen" property="buMen" />
+        <result column="salt" property="salt" />
+        <result column="createTime" property="createTime" />
+        <result column="updateTime" property="updateTime" />
+        <result column="email" property="email" />
+    </resultMap>
 
+    <select id="getUserList" resultMap="mapVo">
+        select bu.*,GROUP_CONCAT(br.`name`) rname,GROUP_CONCAT(br.id) rid from base_user bu
+        LEFT JOIN base_user_role bur on bu.id=bur.userId
+        LEFT JOIN base_role br on bur.roleId=br.id
+
+        <where>
+            <if test="vo.userName!=null and vo.userName!=''">
+                bu.userName like concat("%",#{vo.userName},"%")
+            </if>
+            <if test="vo.loginName!=null and vo.loginName!=''">
+               and bu.loginName like concat("%",#{vo.loginName},"%")
+            </if>
+            <if test="vo.tel != null and vo.tel != ''">
+                and bu.tel like concat("%",#{vo.tel},"%")
+            </if>
+        </where>
+        GROUP BY bu.id
+    </select>
 </mapper>

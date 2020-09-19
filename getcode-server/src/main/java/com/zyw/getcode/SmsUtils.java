@@ -1,4 +1,4 @@
-package com.wts.getcode;
+package com.zyw.getcode;
 
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.IAcsClient;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @Auther: ZouLF
+ * @Auther: zhuyiwen
  * @Date: 2018/5/29 10:49
  * @Description: 短信验证码测试
  */
@@ -42,8 +42,8 @@ public class SmsUtils {
         String domain = "dysmsapi.aliyuncs.com";
 
         // TODO 此处需要替换成开发者自己的AK(在阿里云访问控制台寻找)
-        String accessKeyId = "LTAI4G92nDpyFy6jaknZq7y3";           // TODO 改这里
-        String accessKeySecret = "oAbj2MV1krCmokBbTukoMr8Mu2aCw3"; // TODO 改这里
+        String accessKeyId = "LTAI4G7PRsRwyJt9BT1e3m64";           // TODO 改这里
+        String accessKeySecret = "tLCXv4wxU7Knay7jha2lweNHdE1Ftb"; // TODO 改这里
 
         // 可自助调整超时时间
         System.setProperty("sun.net.client.defaultConnectTimeout", "300000");
@@ -59,9 +59,9 @@ public class SmsUtils {
         // 必填:待发送手机号
         request.setPhoneNumbers(tel);
         // 必填:短信签名-可在短信控制台中找到
-        request.setSignName("WTS商城"); // TODO 改这里
+        request.setSignName("惠宜家商城"); // TODO 改这里
         // 必填:短信模板-可在短信控制台中找到
-        request.setTemplateCode("SMS_202560176");  // TODO 改这里
+        request.setTemplateCode("SMS_202560023");  // TODO 改这里
         // 可选:模板中的变量替换JSON串,如模板内容为"亲爱的用户,您的验证码为${code}"时,此处的值为
         request.setTemplateParam("{\"code\":\"" + s + "\"}");
 
@@ -78,7 +78,7 @@ public class SmsUtils {
         SendSmsResponse sendSmsResponse = acsClient.getAcsResponse(request);
         if(sendSmsResponse.getCode()!= null && sendSmsResponse.getCode().equals("OK")){
             System.out.println(sendSmsResponse.getCode());
-            System.out.println("请求成功!");
+            System.out.println("验证码发送成功!");
             return true;
         }
         return false;

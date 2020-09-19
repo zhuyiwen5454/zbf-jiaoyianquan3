@@ -22,7 +22,7 @@ public class JwtUtils {
     /**
      * Jwt的加密串的过期时间，这里配置是30分钟
      */
-    private static long timeout=1*60*1000;
+    private static long timeout=30*60*1000;
 
 
     /**

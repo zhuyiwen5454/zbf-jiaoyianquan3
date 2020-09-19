@@ -39,6 +39,8 @@ public class MyLoginSuccessHandler implements AuthenticationSuccessHandler {
         responseResult.setMsg(AllStatusEnum.LOGIN_SUCCESS.getMsg());
         responseResult.setCode(AllStatusEnum.LOGIN_SUCCESS.getCode());
 
+        System.out.println("登陆成功处理器");
+
         responseResult.setUserInfo(authentication.getPrincipal().toString());
         //将用户名信息生成Token
         String token = JwtUtils.generateToken(authentication.getPrincipal().toString());

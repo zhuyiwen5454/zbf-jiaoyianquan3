@@ -6,8 +6,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
- * @author: WTS
- * 作者: WTS
+ * @author: zhuyiwen
+ * 作者: zhuyiwen
  * 日期: 2020/9/6  14:11
  * 描述:
  */

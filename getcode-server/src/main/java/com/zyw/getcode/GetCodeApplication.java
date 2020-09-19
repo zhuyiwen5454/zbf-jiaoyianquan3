@@ -1,12 +1,12 @@
-package com.wts.getcode;
+package com.zyw.getcode;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
- * @author: WTS
- * 作者: WTS
+ * @author: zhuyiwen
+ * 作者: zhuyiwen
  * 日期: 2020/9/10 18:55
  * 描述:
  */

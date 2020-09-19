@@ -220,6 +220,7 @@ public class AuthorizeGloableFilter implements GlobalFilter,Ordered {
         String userRole = uinfo.toString();
         //解析出当前用户所拥有的角色权限
         JSONObject jsonObject1 = JSON.parseObject(userRole);
+        System.out.println(jsonObject1+"22222222222222222222222222222222222222");
         //获取当前请求的URL信息
         String currentAccessUrl = getCurrentAccessUrl(exchange);
         //获取当前请求的URL需要的访问权限  menuRole 在登录的使用已经加载到Redis中

@@ -3,6 +3,7 @@ package com.zbf.user.entity;
 import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import lombok.Data;
@@ -14,7 +15,7 @@ import lombok.experimental.Accessors;
  * 
  * </p>
  *
- * @author wts
+ * @author zhuyiwen
  * @since 2020-09-16
  */
 @Data
@@ -47,7 +48,7 @@ public class BaseMenu implements Serializable {
     private Integer leval;
 
     @TableField("createTime")
-    private LocalDateTime createTime;
+    private Date createTime;
 
 
     @TableField(exist = false)

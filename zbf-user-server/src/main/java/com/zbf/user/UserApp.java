@@ -17,6 +17,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
+@MapperScan(basePackages = {"com.zbf.user.mapper"})
 @ComponentScan(basePackages = {"com.zbf"})
 public class UserApp {
     public static void main(String[] args) {

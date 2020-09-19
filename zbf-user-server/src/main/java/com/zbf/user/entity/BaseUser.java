@@ -14,7 +14,7 @@ import lombok.experimental.Accessors;
  * 
  * </p>
  *
- * @author wts
+ * @author zhuyiwen
  * @since 2020-09-12
  */
 @Data
@@ -36,6 +36,9 @@ public class BaseUser implements Serializable {
 
     @TableField("loginName")
     private String loginName;
+
+    @TableField("img")
+    private String img;
 
     @TableField("passWord")
     private String passWord;
@@ -64,5 +67,10 @@ public class BaseUser implements Serializable {
 
     @TableField(exist = false)
     private String checkPass;
+
+    @TableField(exist = false)
+    private String rname;
+    @TableField(exist = false)
+    private String rid;
 
 }

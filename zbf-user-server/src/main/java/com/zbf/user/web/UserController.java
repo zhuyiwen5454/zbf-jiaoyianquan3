@@ -3,6 +3,8 @@ package com.zbf.user.web;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.nacos.common.util.Md5Utils;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zbf.common.entity.AllRedisKeyEnum;
 import com.zbf.common.utils.*;
 import com.zbf.user.api.GetResCodeDao;
@@ -11,6 +13,7 @@ import com.zbf.user.service.IBaseUserService;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
@@ -98,8 +102,8 @@ public class UserController {
         // 获取前台传过来的密码
         String passWord = baseUser.getPassWord();
         // 密码加严
-        baseUser.setSalt("wts");
-        String pw = passWord+"wts";
+        baseUser.setSalt("zyw");
+        String pw = passWord+"zyw";
         // 密码加密
         String md5 = Md5Utils.getMD5(pw, "utf8");
         // 存入加密的密码
@@ -133,7 +137,7 @@ public class UserController {
     }
 
     /**
-     * 作者: WTS
+     * 作者: zhuyiwen
      * 日期: 2020/9/10  15:13
      * 参数：
      * 返回值：
@@ -170,20 +174,20 @@ public class UserController {
                 FreemarkerUtils.getStaticHtml(RestController.class,"/template/","activeOk.html",stringObjectHashMap,response.getWriter());
             }else{
                 String loginName = request.getParameter("loginName");
-                stringObjectHashMap.put("newActiveLink","http://192.168.197.1:10000/user/getNewActiveLink?loginName="+loginName);
+                stringObjectHashMap.put("newActiveLink","http://192.168.43.56:10000/user/getNewActiveLink?loginName="+loginName);
                 FreemarkerUtils.getStaticHtml(RestController.class,"/template/","activeError.html",stringObjectHashMap,response.getWriter());
             }
 
         }catch (ExpiredJwtException e){
             HashMap<String, Object> newData = new HashMap<>();
             String loginName = request.getParameter("loginName");
-            newData.put("newActiveLink","http://192.168.245.1:10000/user/getNewActiveLink?loginName="+loginName);
+            newData.put("newActiveLink","http://192.168.43.56:10000/user/getNewActiveLink?loginName="+loginName);
             FreemarkerUtils.getStaticHtml(RestController.class,"/template/","activeError.html",newData,response.getWriter());
         }
     }
 
     /**
-     * 作者: WTS
+     * 作者: zhuyiwen
      * 日期: 2020/9/10  15:46
      * 参数：baseActivePath 激活的基本路劲，激活信息,timeOut 有效期
      * 返回值：
@@ -213,7 +217,7 @@ public class UserController {
     }
 
     /**
-     * 作者: WTS
+     * 作者: zhuyiwen
      * 日期: 2020/9/14  9:24
      * 描述: 激活失败重新获取激活链接邮件
      * @Param [request, response]
@@ -232,7 +236,7 @@ public class UserController {
         //根据loginName获取用户信息
         BaseUser bul = baseUserService.getBaseUserByLoginName(loginName);
         //3、扣扣邮箱发送激活邮件
-        MailQQUtils.sendMessage(bul.getEmail(),"WTS商城",getActivePath(1*60*1000L,loginName));
+        MailQQUtils.sendMessage(bul.getEmail(),"惠宜家商城",getActivePath(1*60*1000L,loginName));
 
         FreemarkerUtils.getStaticHtml(RestController.class,"/template/","sendOK.html",stringObjectHashMap,response.getWriter());
     }
@@ -342,5 +346,38 @@ public class UserController {
             return true;
         }
         return false;
+    }
+
+
+    /**
+     * 用户管理=========================================================================================
+     */
+
+
+    /**
+     * 用户分页列表+查询
+     */
+        @RequestMapping("/getUserList")
+        public IPage<BaseUser> getUserList(Page page, BaseUser vo){
+            return baseUserService.getUserList(page,vo);
+        }
+    /**
+     * 激活和冻结
+     */
+    @RequestMapping("/jihuo")
+    public boolean jihuo(@RequestParam Integer id){
+        System.out.println("需要激活或者冻结的数据id:"+id);
+        BaseUser baseUser = baseUserService.jihuo(id);
+        boolean flag = true;
+        if(baseUser.getStatus()==0){
+            baseUser.setStatus(1);
+            flag = true;
+        }else {
+            baseUser.setStatus(0);
+            flag = false;
+        }
+        //修改
+        baseUserService.updJhuo(baseUser);
+        return flag;
     }
 }

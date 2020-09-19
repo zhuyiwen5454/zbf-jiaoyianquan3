@@ -1,17 +1,22 @@
 package com.zbf.user.mapper;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zbf.user.entity.BaseUser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+
+import java.util.List;
+
 /**
  * <p>
  *  Mapper 接口
  * </p>
  *
- * @author wts
+ * @author zhuyiwen
  * @since 2020-09-12
  */
 @Mapper
@@ -51,4 +56,22 @@ public interface BaseUserMapper extends BaseMapper<BaseUser> {
     @Update("UPDATE base_user SET passWord=#{passWord} WHERE id=#{id}")
     public boolean upd(BaseUser baseUser);
 
+
+
+    /**
+     * 用户列表查询方法
+     * @return
+     */
+    IPage<BaseUser> getUserList(Page page, BaseUser vo);
+
+    /**
+     * 激活
+     * @param id
+     * @return
+     */
+    @Select("select * from base_user bu WHERE bu.id=#{id}")
+    BaseUser jihuo(Integer id);
+
+    @Update("UPDATE base_user SET status=#{status} WHERE id=#{id}")
+    void updJhuo(BaseUser baseUser);
 }

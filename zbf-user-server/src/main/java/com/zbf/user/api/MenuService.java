@@ -18,8 +18,8 @@ import java.util.Map;
  **/
 @Service
 public class MenuService {
-    @Autowired
-    private BaseMenuMapper menuMapper;
+   /* @Autowired
+    private BaseMenuMapper menuMapper;*/
 
 
     /**
@@ -29,7 +29,7 @@ public class MenuService {
       *@Param [userHash]
       *@return java.util.List<java.util.Map<java.lang.String,java.lang.Object>>
       *@miaoshu  获取某个用户的权限列表
-    **/
+    **//*
     public List<Map<String,Object>> getlistMenu(HashMap<String, Object> userHash) {
         //获取一级菜单
         List<Map<String, Object>> list = menuMapper.getByLoginNameMenu(userHash.get("loginName").toString());
@@ -39,14 +39,14 @@ public class MenuService {
     }
 
 
-    /**
+    *//**
       *@Author tongdaowei
       *@Description //TODO
       *@Date 2020/9/16 0016 下午 6:31
       *@Param [list, loginName]
       *@return void
       *@miaoshu 根据一级菜单获取下级菜单
-    **/
+    **//*
     private void getMenuList(List<Map<String, Object>> list, String loginName) {
 
         for (Map<String, Object> menu:list) {
@@ -65,5 +65,5 @@ public class MenuService {
                 break;
             }
         }
-    }
+    }*/
 }

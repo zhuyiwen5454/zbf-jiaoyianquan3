@@ -14,11 +14,13 @@ import java.util.Map;
  *  Mapper 接口
  * </p>
  *
- * @author wts
+ * @author zhuyiwen
  * @since 2020-09-16
  */
 @Mapper
 public interface BaseMenuMapper extends BaseMapper<BaseMenu> {
 
-    public List<BaseMenu> getMenuList();
+    public List<BaseMenu> getMenuList(String loginName);
+
+    public  List<BaseMenu> menuAll();
 }

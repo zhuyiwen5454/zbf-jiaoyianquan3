@@ -16,14 +16,19 @@ import java.util.Map;
  *  服务实现类
  * </p>
  *
- * @author wts
+ * @author zhuyiwen
  * @since 2020-09-16
  */
 @Service
 public class BaseMenuServiceImpl extends ServiceImpl<BaseMenuMapper, BaseMenu> implements IBaseMenuService {
 
     @Override
-    public List<BaseMenu> getMenuList() {
-        return baseMapper.getMenuList();
+    public List<BaseMenu> getMenuList(String loginName) {
+        return baseMapper.getMenuList(loginName);
+    }
+
+    @Override
+    public List<BaseMenu> menuAll() {
+        return baseMapper.menuAll();
     }
 }

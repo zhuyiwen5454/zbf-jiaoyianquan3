@@ -27,6 +27,8 @@ public class MyLoginFailureHandler implements AuthenticationFailureHandler {
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
         httpServletResponse.setContentType("application/json;charset=UTF-8");
 
+        System.out.println("登陆失败处理器");
+
         ResponseResult responseResult = ResponseResult.getResponseResult();
         responseResult.setMsg(AllStatusEnum.LOGINOUT_FAIRLE.getMsg());
         responseResult.setCode(AllStatusEnum.LOGINOUT_FAIRLE.getCode());
