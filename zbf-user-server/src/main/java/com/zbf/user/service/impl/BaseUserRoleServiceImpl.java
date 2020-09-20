@@ -17,4 +17,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class BaseUserRoleServiceImpl extends ServiceImpl<BaseUserRoleMapper, BaseUserRole> implements IBaseUserRoleService {
 
+    @Override
+    public void addUserRole(Long userId, Long rid) {
+        baseMapper.addUserRole(userId,rid);
+    }
 }

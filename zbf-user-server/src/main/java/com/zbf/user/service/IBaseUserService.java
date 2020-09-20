@@ -68,8 +68,14 @@ public interface IBaseUserService extends IService<BaseUser> {
     BaseUser jihuo(Integer id);
 
     /**
-     * 激活冻结后修改数据啊
+     * 激活冻结后修改数据啊你是
      * @param baseUser
      */
     void updJhuo(BaseUser baseUser);
+
+    /**
+     * 添加用户信息
+     * @param baseUser
+     */
+    void addUser(BaseUser baseUser);
 }

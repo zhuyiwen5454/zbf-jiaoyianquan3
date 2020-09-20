@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zbf.common.entity.AllRedisKeyEnum;
 import com.zbf.common.utils.*;
 import com.zbf.user.api.GetResCodeDao;
+import com.zbf.user.entity.BaseRole;
 import com.zbf.user.entity.BaseUser;
 import com.zbf.user.service.IBaseUserService;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -48,6 +49,8 @@ public class UserController {
 
     @Autowired
     private IBaseUserService baseUserService;
+
+
 
     private static final Pattern PATTERN_PHONE = Pattern.compile("^-?\\d+(\\.\\d+)?$");
 
@@ -379,5 +382,15 @@ public class UserController {
         //修改
         baseUserService.updJhuo(baseUser);
         return flag;
+    }
+
+    /**
+     * 添加用户
+     */
+    @RequestMapping("/addUser")
+    public boolean addUser(@RequestBody BaseUser baseUser){
+        System.out.println(baseUser);
+        baseUserService.addUser(baseUser);
+        return true;
     }
 }

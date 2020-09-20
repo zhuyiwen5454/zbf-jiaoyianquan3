@@ -57,5 +57,10 @@ public class BaseUserServiceImpl extends ServiceImpl<BaseUserMapper, BaseUser> i
         baseMapper.updJhuo(baseUser);
     }
 
+    @Override
+    public void addUser(BaseUser baseUser) {
+        baseMapper.addUser(baseUser);
+    }
+
 
 }

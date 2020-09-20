@@ -2,6 +2,7 @@ package com.zbf.user.mapper;
 
 import com.zbf.user.entity.BaseUserRole;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -14,5 +15,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface BaseUserRoleMapper extends BaseMapper<BaseUserRole> {
-
+    @Insert("INSERT INTO base_user_role(roleId,userId) VALUES(#{rid},#{userId})")
+    void addUserRole(Long userId, Long rid);
 }

@@ -3,6 +3,9 @@ package com.zbf.user.mapper;
 import com.zbf.user.entity.BaseRole;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * <p>
@@ -14,5 +17,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface BaseRoleMapper extends BaseMapper<BaseRole> {
-
+    @Select("SELECT * FROM base_role br WHERE br.`name` like concat('%',#{name},'%')")
+    List<BaseRole> bindRoleForUser(String name);
 }

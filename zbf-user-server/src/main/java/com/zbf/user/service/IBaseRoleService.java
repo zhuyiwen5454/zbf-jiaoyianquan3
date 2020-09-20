@@ -3,6 +3,8 @@ package com.zbf.user.service;
 import com.zbf.user.entity.BaseRole;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IBaseRoleService extends IService<BaseRole> {
 
+    List<BaseRole> bindRoleForUser(String name);
 }

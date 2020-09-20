@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IBaseUserRoleService extends IService<BaseUserRole> {
 
+    void addUserRole(Long userId, Long rid);
 }

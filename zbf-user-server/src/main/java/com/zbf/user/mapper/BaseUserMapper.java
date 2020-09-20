@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zbf.user.entity.BaseUser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -74,4 +75,6 @@ public interface BaseUserMapper extends BaseMapper<BaseUser> {
 
     @Update("UPDATE base_user SET status=#{status} WHERE id=#{id}")
     void updJhuo(BaseUser baseUser);
+    @Insert("INSERT INTO base_user(userName,loginName,tel,status) VALUES(#{userName},#{loginName},#{tel},#{status})")
+    void addUser(BaseUser baseUser);
 }
